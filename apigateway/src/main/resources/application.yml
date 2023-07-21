@@ -1,0 +1,52 @@
+spring:
+    application:
+        name: gatewayserver
+    config:
+        import: optional:configserver:http://localhost:8076/
+    cloud:
+        gateway:
+            discovery:
+                locator:
+                    enabled: true
+                    lowerCaseServiceId: true
+
+
+info:
+    app:
+        name: Gateway Server Microservice
+        description: Credit Suisse Gateway Server Application
+        version: 1.0.0
+
+management:
+    info:
+        env:
+            enabled: true
+    endpoint:
+        gateway:
+            enabled: true
+
+eureka:
+    instance:
+        preferIpAddress: true
+    client:
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://localhost:8078/eureka/
+
+logging:
+    level:
+        org:
+            springframework:
+                cloud:
+                    gateway: DEBUG
+
+okta:
+    oauth2:
+        issuer: https://dev-58899864.okta.com/oauth2/default
+        audience: api://default
+        client-id: 0oaafmiw6ydg96WW35d7
+        client-secret: K4MYFnE-VoUGFBy7MZa61Ew1JHPNxk9gUDI5rK43WAGZjDGFNbtnglumuolUs27s
+        scopes: openid, profile, email, offline_access
+
+
